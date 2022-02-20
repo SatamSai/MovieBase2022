@@ -43,7 +43,7 @@ function Search({search}) {
       }
     }
     fetch()
-  },[searchTerm,isLoading,search,BaseUrl,ApiKey])
+  },[searchTerm,isLoading,search,BaseUrl,ApiKey,filter,list])
 
   //filtering
   useEffect(()=>{
@@ -71,7 +71,7 @@ function Search({search}) {
       }
     }
     fetch()
-  },[filter,isLoading,list.pages,search,BaseUrl,ApiKey])
+  },[filter,isLoading,search,BaseUrl,ApiKey,list])
   return (
     <PageStyles>
         <NavBar current={search}/>
