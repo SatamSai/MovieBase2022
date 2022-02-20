@@ -58,6 +58,12 @@ export const Logo=styled.div`
 export const Links=styled.div`
     font-size:22px; 
     display: flex;
+    .navlink{
+        color: ${props=>props.active?"red":"white"};
+        text-decoration:none;
+        font-weight:500;
+        padding:0px 10px;
+    }
     @media only screen and (max-width:1080px){
         font-size: 19px;
     }
@@ -67,9 +73,7 @@ export const Links=styled.div`
         display: ${props=>props.show?"block":"none"};
     }
 `
-export const Link=styled.div`
-    font-weight:500;
-    padding:0px 10px;
+export const NavLink=styled.div`
     @media only screen and (max-width: 750px){
         padding:10px 0;
     }

@@ -45,6 +45,7 @@ export const MovieName=styled.div`
     font-weight: 700;
     overflow:hidden;
     color:white;
+    text-decoration: none;
     @media only screen and (max-width: 1080px){
         font-size: 18px;
         height:40px;

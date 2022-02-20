@@ -5,6 +5,7 @@ export const PageStyles=styled.div`
     font-family: 'Montserrat', sans-serif;
     position:relative;
     padding-bottom: 40px;
+    min-height: 100vh;
 `
 export const Content=styled.div`
 `
@@ -115,5 +116,22 @@ export const Option=styled.div`
     }
     @media only screen and (max-width:480px){
         font-size: 12px;
+    }
+`
+
+export const Videos=styled.div`
+    max-width: 1200px;
+    width:93%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+`
+export const Video=styled.iframe`
+    width:49%;
+    aspect-ratio: 3/2;
+    @media only screen and (max-width: 480px)
+    {
+        width: 100%;
     }
 `
