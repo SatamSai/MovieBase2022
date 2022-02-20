@@ -10,16 +10,15 @@ function Collection() {
     const ApiKey=process.env.REACT_APP_API_KEY;
     const [searchTerm,setSearchTerm]=useState('')
     const [collections,setCollections]=useState([])
-    useEffect(async()=>{
-        if(searchTerm!==""){
-            console.log("###############################")
-            console.log(BaseUrl+'search/collection?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1')
-            const res=await axios.get(BaseUrl+'search/collection?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1')
-            console.log(res.data)
-            console.log("###############################")
-            setCollections(res.data.results)
+    useEffect(()=>{
+        async function fetch(){
+            if(searchTerm!==""){
+                const res=await axios.get(BaseUrl+'search/collection?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1')
+                setCollections(res.data.results)
+            }
         }
-    },[searchTerm])
+        fetch()
+    },[searchTerm,ApiKey,BaseUrl])
   return (
     <PageStyles>
         <NavBar current="Collection"/>

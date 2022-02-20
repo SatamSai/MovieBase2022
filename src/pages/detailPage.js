@@ -18,17 +18,20 @@ function DetailPage() {
     const [videos,setVideos]=useState([])
     const [genres,setGenres]=useState([])
     const params=useParams()
-    useEffect(async()=>{
-        const detailres=await axios.get(BaseUrl+params.category+'/'+params.id+'?api_key='+ApiKey+'&append_to_response=videos,images,credits,similar')
-        setDetails(detailres.data)
-        setPosters(detailres.data.images.posters.slice(0,20))
-        setCast(detailres.data.credits.cast)
-        setRelated(detailres.data.similar.results)
-        setTrailers(detailres.data.videos.results.filter(vid=>vid.type=="Trailer").slice(0,2))
-        setTeasers(detailres.data.videos.results.filter(vid=>vid.type=="Teaser").slice(0,2))
-        setVideos(detailres.data.videos.results.filter(vid=>vid.type!=="Trailer"&&vid.type!=="Teaser").slice(0,2))
-        setGenres(detailres.data.genres)
-    },[params.id])
+    useEffect(()=>{
+        async function fetch(){
+            const detailres=await axios.get(BaseUrl+params.category+'/'+params.id+'?api_key='+ApiKey+'&append_to_response=videos,images,credits,similar')
+            setDetails(detailres.data)
+            setPosters(detailres.data.images.posters.slice(0,20))
+            setCast(detailres.data.credits.cast)
+            setRelated(detailres.data.similar.results)
+            setTrailers(detailres.data.videos.results.filter(vid=>vid.type==="Trailer").slice(0,2))
+            setTeasers(detailres.data.videos.results.filter(vid=>vid.type==="Teaser").slice(0,2))
+            setVideos(detailres.data.videos.results.filter(vid=>vid.type!=="Trailer"&&vid.type!=="Teaser").slice(0,2))
+            setGenres(detailres.data.genres)
+        }
+        fetch()
+    },[params,ApiKey,BaseUrl])
   return(
     <PageStyles>
         <NavBar/>

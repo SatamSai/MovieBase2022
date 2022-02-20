@@ -1,5 +1,5 @@
 import React from 'react'
-import {Header,CollectionDetails, PosterImg, CollectionSummary,CollectionTitle,CollectionDesc,CollectionParts} from './CollectionHeader.styles'
+import {Header,CollectionDetails, PosterImg, CollectionSummary,CollectionTitle,CollectionDesc} from './CollectionHeader.styles'
 import HeaderImg from '../../assets/Header.jpg'
 import Poster from '../../assets/Poster.jpg'
 

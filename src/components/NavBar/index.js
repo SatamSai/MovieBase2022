@@ -16,10 +16,10 @@ function NavBar({current}) {
         </Main>
         <Links show={show}>
           <Link className='navlink' active={true} to="/">Home</Link>
-          <Link className='navlink' active={current=="movie"} to="/movie">Movies</Link>
-          <Link className='navlink' active={current=="tv"} to="/tv">Shows</Link>
-          <Link className='navlink' active={current=="Collection"} to="/collection">Collections</Link>
-          <Link className='navlink' active={current=="People"} to="/">People</Link>
+          <Link className='navlink' active={current==="movie"} to="/movie">Movies</Link>
+          <Link className='navlink' active={current==="tv"} to="/tv">Shows</Link>
+          <Link className='navlink' active={current==="Collection"} to="/collection">Collections</Link>
+          <Link className='navlink' active={current==="People"} to="/">People</Link>
         </Links>
       </NavBarContent>
     </Nav>

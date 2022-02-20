@@ -32,41 +32,50 @@ function Home() {
   const [trendingSeries,setTrendingSeries]=useState([])
   const [searchMovieResults,setSearchMovieResults]=useState(initialState)
   const [searchSeriesResults,setSearchSeriesResults]=useState(initialState)
-  useEffect(async()=>{
-    const trenmovres=await axios.get(BaseUrl+'trending/movie/week?api_key='+ApiKey)
-    const trenserres=await axios.get(BaseUrl+'trending/tv/week?api_key='+ApiKey)
-    const topmovieres=await axios.get(BaseUrl+'movie/top_rated?api_key='+ApiKey+'&language=en-US&page=1')
-    const topseriesres=await axios.get(BaseUrl+'tv/top_rated?api_key='+ApiKey+'&language=en-US&page=1')
-    setTrendingMovies(trenmovres.data.results)
-    setTrendingSeries(trenserres.data.results)
-    setTopRatedMovies(topmovieres.data.results)
-    setTopRatedSeries(topseriesres.data.results)
-  },[])
-  useEffect(async()=>{
-    if(searchTerm!==""){
-      const moviesres=await axios.get(BaseUrl+'search/movie?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1&include_adult=false')
-      const seriesres=await axios.get(BaseUrl+'search/tv?api_key='+ApiKey+'&language=en-US&page=1&query='+searchTerm+'&page=1&include_adult=false')
-      setSearchMovieResults({page:moviesres.data.page,results:moviesres.data.results,total_pages:moviesres.data.total_pages,total_results:moviesres.data.total_results})
-      setSearchSeriesResults({page:seriesres.data.page,results:seriesres.data.results,total_pages:seriesres.data.total_pages,total_results:seriesres.data.total_results})
+  useEffect(()=>{
+    async function fetch(){
+      const trenmovres=await axios.get(BaseUrl+'trending/movie/week?api_key='+ApiKey)
+      const trenserres=await axios.get(BaseUrl+'trending/tv/week?api_key='+ApiKey)
+      const topmovieres=await axios.get(BaseUrl+'movie/top_rated?api_key='+ApiKey+'&language=en-US&page=1')
+      const topseriesres=await axios.get(BaseUrl+'tv/top_rated?api_key='+ApiKey+'&language=en-US&page=1')
+      setTrendingMovies(trenmovres.data.results)
+      setTrendingSeries(trenserres.data.results)
+      setTopRatedMovies(topmovieres.data.results)
+      setTopRatedSeries(topseriesres.data.results)
     }
-  },[searchTerm])
-  useEffect(async()=>{
-    if(searchTerm!=="")
-    {
-      if(isLoadingMovies){
-        const page=searchMovieResults.page+1
-        const moviesres=await axios.get(BaseUrl+'search/movie?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page='+page+'&include_adult=false')
-        setSearchMovieResults({page:moviesres.data.page,results:[...searchMovieResults.results,...moviesres.data.results],total_pages:moviesres.data.total_pages,total_results:moviesres.data.total_results})
-        setIsLoadingMovies(false)
-      }
-      if(isLoadingSeries){
-        const page=searchSeriesResults.page+1
-        const seriesres=await axios.get(BaseUrl+'search/tv?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page='+page+'&include_adult=false')
-        setSearchSeriesResults({page:seriesres.data.page,results:[...searchSeriesResults.results,...seriesres.data.results],total_pages:seriesres.data.total_pages,total_results:seriesres.data.total_results})
-        setIsLoadingSeries(false)
+    fetch()
+  },[BaseUrl,ApiKey])
+  useEffect(()=>{
+    async function fetch(){
+      if(searchTerm!==""){
+        const moviesres=await axios.get(BaseUrl+'search/movie?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1&include_adult=false')
+        const seriesres=await axios.get(BaseUrl+'search/tv?api_key='+ApiKey+'&language=en-US&page=1&query='+searchTerm+'&page=1&include_adult=false')
+        setSearchMovieResults({page:moviesres.data.page,results:moviesres.data.results,total_pages:moviesres.data.total_pages,total_results:moviesres.data.total_results})
+        setSearchSeriesResults({page:seriesres.data.page,results:seriesres.data.results,total_pages:seriesres.data.total_pages,total_results:seriesres.data.total_results})
       }
     }
-  },[searchTerm,isLoadingMovies,isLoadingSeries])
+    fetch()
+  },[searchTerm,BaseUrl,ApiKey])
+  useEffect(()=>{
+    async function fetch(){
+      if(searchTerm!=="")
+      {
+        if(isLoadingMovies){
+          const page=searchMovieResults.page+1
+          const moviesres=await axios.get(BaseUrl+'search/movie?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page='+page+'&include_adult=false')
+          setSearchMovieResults({page:moviesres.data.page,results:[...searchMovieResults.results,...moviesres.data.results],total_pages:moviesres.data.total_pages,total_results:moviesres.data.total_results})
+          setIsLoadingMovies(false)
+        }
+        if(isLoadingSeries){
+          const page=searchSeriesResults.page+1
+          const seriesres=await axios.get(BaseUrl+'search/tv?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page='+page+'&include_adult=false')
+          setSearchSeriesResults({page:seriesres.data.page,results:[...searchSeriesResults.results,...seriesres.data.results],total_pages:seriesres.data.total_pages,total_results:seriesres.data.total_results})
+          setIsLoadingSeries(false)
+        }
+      }
+    }
+    fetch()
+  },[searchTerm,isLoadingMovies,isLoadingSeries,BaseUrl,ApiKey])
   return (
     <PageStyles>
       <NavBar current="Home"/>

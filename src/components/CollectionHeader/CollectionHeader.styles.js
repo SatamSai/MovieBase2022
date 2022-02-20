@@ -43,7 +43,3 @@ export const CollectionDesc=styled.div`
     font-weight: 500;
     margin: 15px 0;
 `
-export const CollectionParts=styled.div`
-    font-size: 25px;
-    font-weight: 700;
-`

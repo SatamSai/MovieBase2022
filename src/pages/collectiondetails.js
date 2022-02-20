@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import CollectionHeader from '../components/CollectionHeader'
-import Header from '../components/Header'
 import NavBar from '../components/NavBar'
 import { Content, PageStyles } from './styles'
 import axios from 'axios'
@@ -14,12 +13,15 @@ function CollectionDetails() {
   const [movies,setMovies]=useState([])
   const [collection,setCollection]=useState([])
   const params=useParams()
-  useEffect(async()=>{
-    const res=await axios.get(BaseUrl+'collection/'+params.id+'?api_key='+ApiKey+'&language=en-US')
-    setMovies(res.data.parts)
-    setCollection(res.data)
-    console.log(res.data.parts)
-  },[])
+  useEffect(()=>{
+    async function fetch(){
+      const res=await axios.get(BaseUrl+'collection/'+params.id+'?api_key='+ApiKey+'&language=en-US')
+      setMovies(res.data.parts)
+      setCollection(res.data)
+      console.log(res.data.parts)
+    }
+    fetch()
+  },[BaseUrl,ApiKey,params])
 
   return (
     <PageStyles>

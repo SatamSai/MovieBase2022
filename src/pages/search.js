@@ -20,46 +20,58 @@ function Search({search}) {
   const [isLoading,setIsLoading]=useState(false)
   const [searchTerm,setSearchTerm]=useState('')
   //searching
-  useEffect(async()=>{
-    if(searchTerm!==""){
-      setFilter("search")
-      const res=await axios.get(BaseUrl+'search/'+search+'?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1&include_adult=false')
-      setList({page:res.data.page,results:res.data.results,total_pages:res.data.total_pages,total_results:res.data.total_results})
+  useEffect(()=>{
+    async function fetch(){
+      if(searchTerm!==""){
+        setFilter("search")
+        const res=await axios.get(BaseUrl+'search/'+search+'?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page=1&include_adult=false')
+        setList({page:res.data.page,results:res.data.results,total_pages:res.data.total_pages,total_results:res.data.total_results})
+      }
     }
-  },[searchTerm,search])
-  useEffect(async()=>{
-    if(filter==="search")
-    {
-      if(isLoading){
+    fetch()
+  },[searchTerm,search,BaseUrl,ApiKey])
+  useEffect(()=>{
+    async function fetch(){
+      if(filter==="search")
+      {
+        if(isLoading){
+          const page=list.page+1
+          const res=await axios.get(BaseUrl+'search/'+search+'?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page='+page+'&include_adult=false')
+          setList({page:res.data.page,results:[...list.results,...res.data.results],total_pages:res.data.total_pages,total_results:res.data.total_results})
+          setIsLoading(false)
+        }
+      }
+    }
+    fetch()
+  },[searchTerm,isLoading,search,BaseUrl,ApiKey])
+
+  //filtering
+  useEffect(()=>{
+    async function fetch(){
+      if(filter!=='search')
+      {
+        const query=(filter==="trending")?"trending/"+search+"/week":(filter==="toprated")?(search+"/top_rated"):(search+(search==="movie"?"/upcoming":"/on_the_air"))
+        console.log(BaseUrl+query+'?api_key='+ApiKey+'&language=en-US&page=1')
+        const res=await axios.get(BaseUrl+query+'?api_key='+ApiKey+'&language=en-US&page=1')
+        setList({page:res.data.page,results:res.data.results,total_pages:res.data.total_pages,total_results:res.data.total_results})
+        console.log({page:res.data.page,results:res.data.results,total_pages:res.data.total_pages,total_results:res.data.total_results})
+      }
+    }
+    fetch()
+  },[filter,search,BaseUrl,ApiKey])
+
+  useEffect(()=>{
+    async function fetch(){
+      if(isLoading && filter!=="search"){
+        const query=(filter==="trending")?"trending/"+search+"/week":(filter==="toprated")?(search+"/top_rated"):(search+(search==="movie"?"/upcoming":"/on_the_air"))
         const page=list.page+1
-        const res=await axios.get(BaseUrl+'search/'+search+'?api_key='+ApiKey+'&language=en-US&query='+searchTerm+'&page='+page+'&include_adult=false')
+        const res=await axios.get(BaseUrl+query+'?api_key='+ApiKey+'&language=en-US&page='+page)
         setList({page:res.data.page,results:[...list.results,...res.data.results],total_pages:res.data.total_pages,total_results:res.data.total_results})
         setIsLoading(false)
       }
     }
-  },[searchTerm,isLoading,search])
-
-  //filtering
-  useEffect(async()=>{
-    if(filter!=='search')
-    {
-      const query=(filter==="trending")?"trending/"+search+"/week":(filter==="toprated")?(search+"/top_rated"):(search+(search==="movie"?"/upcoming":"/on_the_air"))
-      console.log(BaseUrl+query+'?api_key='+ApiKey+'&language=en-US&page=1')
-      const res=await axios.get(BaseUrl+query+'?api_key='+ApiKey+'&language=en-US&page=1')
-      setList({page:res.data.page,results:res.data.results,total_pages:res.data.total_pages,total_results:res.data.total_results})
-      console.log({page:res.data.page,results:res.data.results,total_pages:res.data.total_pages,total_results:res.data.total_results})
-    }
-  },[filter,search])
-
-  useEffect(async()=>{
-    if(isLoading && filter!=="search"){
-      const query=(filter==="trending")?"trending/"+search+"/week":(filter==="toprated")?(search+"/top_rated"):(search+(search==="movie"?"/upcoming":"/on_the_air"))
-      const page=list.page+1
-      const res=await axios.get(BaseUrl+query+'?api_key='+ApiKey+'&language=en-US&page='+page)
-      setList({page:res.data.page,results:[...list.results,...res.data.results],total_pages:res.data.total_pages,total_results:res.data.total_results})
-      setIsLoading(false)
-    }
-  },[filter,isLoading,list.pages,search])
+    fetch()
+  },[filter,isLoading,list.pages,search,BaseUrl,ApiKey])
   return (
     <PageStyles>
         <NavBar current={search}/>
