@@ -16,7 +16,7 @@ function Header() {
     <Wrapper>
       <Swiper className="mySwiper" autoplay>
         <SwiperSlide>
-            <img src={Img} alt=""/>
+            <img className="headerimg" src={Img} alt=""/>
             <Content className="movie-info">
                 <Movie>
                     <Details>

@@ -98,13 +98,13 @@ function Home() {
           </>:
           <>
             <Heading>Trending Movies</Heading>
-            <MovieSlider results={trendingMovies}/>
+            <MovieSlider results={trendingMovies} category="movie"/>
             <Heading>Top Rated Movies</Heading>
-            <MovieSlider results={topRatedMovies}/>
+            <MovieSlider results={topRatedMovies} category="movie"/>
             <Heading>Trending Series</Heading>
-            <MovieSlider results={trendingSeries}/>
+            <MovieSlider results={trendingSeries} category="tv"/>
             <Heading>Top Rated Series</Heading>
-            <MovieSlider results={topRatedSeries}/>
+            <MovieSlider results={topRatedSeries} category="tv"/>
           </>
         }
       </Content>

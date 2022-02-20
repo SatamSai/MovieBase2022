@@ -18,7 +18,7 @@ export const NavBarContent=styled.div`
     width:93%;
     align-items: center;
     justify-content: space-between;
-    @media only screen and (max-width: 700px){
+    @media only screen and (max-width: 750px){
         flex-direction: column;
         align-items: flex-start;
     }
@@ -62,7 +62,8 @@ export const Links=styled.div`
         color: ${props=>props.active?"red":"white"};
         text-decoration:none;
         font-weight:500;
-        padding:0px 10px;
+        padding:10px 10px;
+        display:block;
     }
     @media only screen and (max-width:1080px){
         font-size: 19px;
