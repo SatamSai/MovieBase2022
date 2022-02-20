@@ -2,7 +2,6 @@ import React from 'react'
 import {Wrapper,Content,Card, PosterImg, MovieName} from './MovieGrid.styles'
 import Poster from '../../assets/no_poster.jpg'
 import {Link} from 'react-router-dom'
-import { Movie } from '../Header/Header.styles'
 
 function MovieGrid({results,search}) {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Wrapper,MovieName,As } from './MovieSlider.styles';
+import { Wrapper,MovieName} from './MovieSlider.styles';
 import Poster from '../../assets/no_poster.jpg'
 
 function MovieSlider({results,size}) {

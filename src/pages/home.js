@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import NavBar from '../components/NavBar'
 import SearchBar from '../components/SearchBar'
 import { Content } from '../components/Header/Header.styles'
-import { Button, Heading, PageStyles,Spinner } from './styles'
+import { Button, Heading, PageStyles } from './styles'
 import "swiper/css/bundle";
 import MovieGrid from '../components/MovieGrid'
 import MovieSlider from '../components/MovieSlider'
