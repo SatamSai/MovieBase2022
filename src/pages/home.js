@@ -75,7 +75,7 @@ function Home() {
       }
     }
     fetch()
-  },[searchTerm,isLoadingMovies,isLoadingSeries,BaseUrl,ApiKey,searchMovieResults])
+  },[searchTerm,isLoadingMovies,isLoadingSeries,BaseUrl,ApiKey,searchMovieResults,searchSeriesResults])
   return (
     <PageStyles>
       <NavBar current="Home"/>
