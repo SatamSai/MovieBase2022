@@ -37,9 +37,9 @@ function DetailPage() {
         <NavBar/>
         <DetailHeader details={details} genres={genres}/>
         <Heading>Cast</Heading>
-        <MovieSlider size="person" results={cast}/>
+        <MovieSlider category="people" results={cast}/>
         <Heading>Posters</Heading>
-        <MovieSlider size="person" results={posters}/>
+        <MovieSlider results={posters}/>
         {
             trailers.length!==0?
             <>
@@ -99,7 +99,7 @@ function DetailPage() {
         }
 
         <Heading>Related Movies</Heading>
-        <MovieSlider size="person" results={related}/>
+        <MovieSlider category='movie' results={related}/>
     </PageStyles>
 
   )

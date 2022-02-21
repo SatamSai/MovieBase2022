@@ -19,7 +19,7 @@ function NavBar({current}) {
           <Link className='navlink' active={current==="movie"} to="/movie">Movies</Link>
           <Link className='navlink' active={current==="tv"} to="/tv">Shows</Link>
           <Link className='navlink' active={current==="Collection"} to="/collection">Collections</Link>
-          <Link className='navlink' active={current==="People"} to="/">People</Link>
+          <Link className='navlink' active={current==="People"} to="/people">People</Link>
         </Links>
       </NavBarContent>
     </Nav>

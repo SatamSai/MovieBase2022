@@ -135,3 +135,60 @@ export const Video=styled.iframe`
         width: 100%;
     }
 `
+
+export const Detail=styled.div`
+    max-width: 1200px;
+    width: 93%;
+    margin:25px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+`
+
+export const Profile=styled.img`
+    width:30%;
+    aspect-ratio: 3.5/5;
+    border-radius: 10px;
+    @media only screen and (max-width: 1080px){
+        width:32%;
+    }
+`
+export const Summary=styled.div`
+    width:65%;
+`
+export const Name=styled.div`
+    font-size:50px;
+    font-weight: 700;
+    @media only screen and (max-width:1080px)
+    {
+        font-size: 40px;
+    }
+    @media only screen and (max-width:750px){
+        font-size: 25px;
+    }
+`
+export const Info=styled.div`
+    font-size: 25px;
+    margin:15px 0;
+    font-weight: 500;
+    @media only screen and (max-width:1080px)
+    {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+    @media only screen and (max-width: 750px)
+    {
+        font-size: 14px;
+        margin: 8px 0;
+    }
+`
+export const Bio=styled.div`
+    @media only screen and (max-width: 1080px){
+        font-size: 12px;
+    }
+    @media only screen and (max-width: 750px)
+    {
+        font-size: 9px;
+    }
+`

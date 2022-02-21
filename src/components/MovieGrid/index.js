@@ -11,7 +11,7 @@ function MovieGrid({results,search}) {
                 results.map(result=>(
                   <Link to={"/"+search+"/"+result.id}>
                     <Card>
-                        <PosterImg src={result.poster_path?"https://image.tmdb.org/t/p/w500"+result.poster_path:Poster}/>
+                        <PosterImg src={result.poster_path?"https://image.tmdb.org/t/p/w500"+result.poster_path:result.profile_path?"https://image.tmdb.org/t/p/w500"+result.profile_path:Poster}/>
                         <MovieName>{result.title||result.name}</MovieName>
                     </Card>
                   </Link>

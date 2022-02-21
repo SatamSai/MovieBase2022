@@ -20,8 +20,6 @@ function Home() {
 
   const BaseUrl=process.env.REACT_APP_BASE_URL;
   const ApiKey=process.env.REACT_APP_API_KEY;
-  console.log("*******************************")
-  console.log(BaseUrl)
 
   const [isLoadingMovies,setIsLoadingMovies]=useState(true)
   const [isLoadingSeries,setIsLoadingSeries]=useState(true)
@@ -32,6 +30,7 @@ function Home() {
   const [trendingSeries,setTrendingSeries]=useState([])
   const [searchMovieResults,setSearchMovieResults]=useState(initialState)
   const [searchSeriesResults,setSearchSeriesResults]=useState(initialState)
+  const [header,setHeader]=useState([])
   useEffect(()=>{
     async function fetch(){
       const trenmovres=await axios.get(BaseUrl+'trending/movie/week?api_key='+ApiKey)
@@ -42,6 +41,7 @@ function Home() {
       setTrendingSeries(trenserres.data.results)
       setTopRatedMovies(topmovieres.data.results)
       setTopRatedSeries(topseriesres.data.results)
+      setHeader([...trenmovres.data.results.slice(0,2),...trenserres.data.results.slice(0,2)])
     }
     fetch()
   },[BaseUrl,ApiKey])
@@ -80,8 +80,8 @@ function Home() {
     <PageStyles>
       <NavBar current="Home"/>
       <Content>
-        <Header/>
-        <SearchBar setSearchTerm={setSearchTerm} setSearchMovieResults={setSearchMovieResults}/>
+        <Header header={header}/>
+        <SearchBar setSearchTerm={setSearchTerm}/>
         {
           searchTerm?
           <>
