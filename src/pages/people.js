@@ -65,7 +65,7 @@ function People() {
         setIsLoading(false)
       }
     }
-  },[searchTerm,BaseUrl,ApiKey,isLoading,person])
+  },[searchTerm,BaseUrl,ApiKey,isLoading,people])
 
 
   return (
