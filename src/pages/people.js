@@ -50,7 +50,7 @@ function People() {
       }
       fetch()
     }
-  },[searchTerm])
+  },[searchTerm,ApiKey,BaseUrl])
 
   useEffect(()=>{
     if(searchTerm!==""){
@@ -65,7 +65,7 @@ function People() {
         setIsLoading(false)
       }
     }
-  })
+  },[searchTerm,BaseUrl,ApiKey,isLoading,person])
 
 
   return (
