@@ -144,6 +144,10 @@ export const Detail=styled.div`
     justify-content: space-between;
     align-items: center;
     color: white;
+    @media only screen and (max-width: 480px)
+    {
+        flex-direction: column;
+    }
 `
 
 export const Profile=styled.img`
@@ -153,9 +157,17 @@ export const Profile=styled.img`
     @media only screen and (max-width: 1080px){
         width:32%;
     }
+    @media only screen and (max-width: 480px){
+        width:50%;
+        margin-bottom: 35px;
+    }
 `
 export const Summary=styled.div`
     width:65%;
+    @media only screen and (max-width: 480px)
+    {
+        width:100%;
+    }
 `
 export const Name=styled.div`
     font-size:50px;
