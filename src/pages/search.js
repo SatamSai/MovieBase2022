@@ -13,6 +13,7 @@ const initialState={
 };
 
 function Search({search}) {
+  let cat=search==='movie'?"Movies":"Shows"
   const BaseUrl=process.env.REACT_APP_BASE_URL;
   const ApiKey=process.env.REACT_APP_API_KEY;
   const [filter,setFilter]=useState('trending')
@@ -85,7 +86,7 @@ function Search({search}) {
               </Options>
             </OptionBar>
               <>
-                <Heading>{filter==="trending"?"Trending Movies":filter==="toprated"?"TopRated Movies":filter==="upcoming"?"Upcoming Movies":"Search Results"}</Heading>
+                <Heading>{filter==="trending"?"Trending "+cat:filter==="toprated"?"TopRated "+cat:filter==="upcoming"?"Upcoming "+cat:"Search Results"}</Heading>
                 <MovieGrid results={list.results} search={search}/>
                 {
                   list.page<list.total_pages?<Button onClick={()=>setIsLoading(true)}>Load More</Button>:<></>
